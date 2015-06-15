@@ -30,4 +30,4 @@ int main(int argc, char *argv[])
         ans += dt.day() == 1;
     cout << ans << endl;
     return 0;
-}
+} // Answer: 171
