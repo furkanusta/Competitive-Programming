@@ -32,3 +32,4 @@ int main(int argc, char *argv[])
     cout << denP/gcd(denP, nomP) << endl;
     return 0;
 }
+// Answer: 100

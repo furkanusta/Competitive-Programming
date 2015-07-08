@@ -50,3 +50,4 @@ int main(int argc, char *argv[])
     cout << max << endl << ans << endl;
     return 0;
 }
+// Answer: 997651

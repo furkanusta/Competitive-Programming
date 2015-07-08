@@ -22,3 +22,4 @@ for my $i (1..100) {
     }
 }
 print $ans, "\n";
+# Answer: 4075

@@ -29,3 +29,4 @@ for my $i(1..9999) {
     }
 }
 print 9999 - $ans, "\n";
+# Answer: 249
