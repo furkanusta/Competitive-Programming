@@ -10,3 +10,4 @@ use warnings;
 use Math::BigInt;
 my $n = int<>;
 print Math::BigInt->bfac(2 * $n - 2) / Math::BigInt->bfac($n - 1) / Math::BigInt->bfac($n - 1);
+
