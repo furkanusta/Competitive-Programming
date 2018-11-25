@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string_view>
+#include <cassert>
 
 #include <range/v3/all.hpp>
 namespace view = ranges::view;
