@@ -7,20 +7,19 @@
 namespace view = ranges::view;
 namespace action = ranges::action;
 
-// Making getline a range could enable us to use more range
 int main() {
-    std::string line;
-    int sum = 0;
-    while(std::getline(std::cin, line)) {
-        auto vec = action::split(line, '\t');
-        auto ints = view::transform(vec, [](auto&&x){
-                                             return std::stoi(std::string(x.begin(), x.end()));
-                                           });
-        auto div = view::cartesian_product(ints, ints)
-            | view::filter([](auto&&t){ return std::get<0>(t) != std::get<1>(t); })
-            | view::filter([](auto&&t){ return std::get<0>(t) % std::get<1>(t) == 0; })
-            | view::transform([](auto&&t){ return std::get<0>(t) / std::get<1>(t); });
-        sum += ranges::accumulate(div, 0); // single element but still
-    }
+    auto rng = view::transform(
+        ranges::getlines(std::cin),
+        [](auto&&line){
+            std::vector<int> vec = view::split(line, ' ')
+                | view::transform([](auto&&x){ return std::string(x); })
+                | view::transform([](auto&&x){ return std::stoi(x); });
+            auto div = view::cartesian_product(vec, vec)
+                | view::filter([](auto&&t){ return std::get<0>(t) != std::get<1>(t); })
+                | view::filter([](auto&&t){ return std::get<0>(t) % std::get<1>(t) == 0; })
+                | view::transform([](auto&&t){ return std::get<0>(t) / std::get<1>(t); });
+            return div.front();
+        });
+    auto sum = ranges::accumulate(rng, 0);
     std::cout << sum << '\n';
 }

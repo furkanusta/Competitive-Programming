@@ -7,18 +7,18 @@
 namespace view = ranges::view;
 namespace action = ranges::action;
 
-// Doesn't check for empty string etc.
-// For some reason requires action::split couldn't use view::split with transform
+// Couldn't find a way to avoid std::string call, neither string_view,
+// nor using view::split directly inside minmax_element works
 int main() {
-    std::string line;
-    int sum = 0;
-    while(std::getline(std::cin, line)) {
-        auto vec = action::split(line, '\t');
-        std::pair mm  = ranges::minmax_element(
-            vec
-            | view::transform([](auto&&x){ return std::string(x.begin(), x.end()); })
-            | view::transform([](auto&&x){ return std::stoi(x); })).get_unsafe();
-        sum += *mm.second - *mm.first;
-    }
+    auto diffs = view::transform(
+        ranges::getlines(std::cin),
+        [](auto&&line){
+            std::vector<int> vec = view::split(line, ' ')
+                | view::transform([](auto&&x){ return std::string(x); })
+                | view::transform([](auto&&x){ return std::stoi(x); });
+            std::pair mm  = ranges::minmax_element(vec);
+            return *mm.second - *mm.first;
+        });
+    auto sum = ranges::accumulate(diffs, 0);
     std::cout << sum << '\n';
 }

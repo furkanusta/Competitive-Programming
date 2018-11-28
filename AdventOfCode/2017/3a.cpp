@@ -8,7 +8,7 @@ namespace view = ranges::view;
 namespace action = ranges::action;
 
 
-// [TODO] Use odd squares instead: 1,9,25 ...
+// TODO: Use odd squares instead: 1,9,25 ...
 int main(int argc, char**argv) {
     assert(argc == 2);
     int N = std::stoi(argv[1]);

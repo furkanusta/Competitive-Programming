@@ -1,4 +1,4 @@
-// [TODO] There are multiple issues:
+// TODO: There are multiple issues:
 // - last transform using sum_neighbors is not pure as it updates the board
 // - uses lots of memory, there might be an alternative solution without holding the whole board
 //   (other than copy-pasting OEIS sequence and just performing lookup)
