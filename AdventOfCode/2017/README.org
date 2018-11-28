@@ -2,6 +2,8 @@ Notes on range-v3
 
 
 + No template deduction guide
-+ for_each vs transform ??
++ for_each vs transform (for_each requires returning another range to flatten, transform requires
+  value)
 + No OP in accumulate, no initial value in partial_sum, no reduce/scan
 + Though compiler usually warns with dangling iterators, messages are quite unhelpful
++
