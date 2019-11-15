@@ -1,0 +1,10 @@
+* Obervations
+
+
+  Perl:
+  + Regex is good but other string utilities are missing. The fact that string are treated as
+    scalars rather than arrays require a bit more even for indexing.
+  + Related to above, since strings are scalars, it is not straightforward to write a generic
+    function that operates both with strings and integers (eq vs ==)
+  + Though map/filter/reduce exists in List::Util, others (e.g max/min) are missing a predicate
+    block. To overcome this, I needed to either rewrite or perform multiple maps
