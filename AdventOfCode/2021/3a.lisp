@@ -1,4 +1,5 @@
 (require 'util)
+(in-package :my-aoc)
 
 (defvar data (read-file "3.inp"))
 
