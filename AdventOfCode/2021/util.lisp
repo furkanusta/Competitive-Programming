@@ -36,4 +36,11 @@
 (defun array-columns (arr)
   (mapcar (lambda (num) (array-column arr num)) (iota (array-dimension arr 1))))
 
+(defun range (end &key (start 0) (step 1))
+   (loop for n from start below end by step
+      collect n))
+
+(defun list-to-string (lst)
+  (format nil "~{~a~}" lst))
+
 (provide 'util)
