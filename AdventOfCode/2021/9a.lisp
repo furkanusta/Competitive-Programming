@@ -3,14 +3,6 @@
 
 (defvar data (mapcar (lambda (line) (mapcar #'digit-char-p (coerce line 'list))) (read-file "9.inp")))
 
-(defun pad-grid (data)
-  (let ((n (length (car data))))
-    (append
-     (cons
-      (make-list (+ 2 n) :initial-element 99)
-      (mapcar (lambda (line) (append (cons 99 line) '(99))) data))
-     (list (make-list (+ 2 n) :initial-element 99)))))
-
 ;; It seems that I had checked all 8 neighbors, however the question only asks for 4.
 ;; Despite that this one passes, so I am leaving it as is.
 (defun low-point-p (grid x y)
@@ -29,7 +21,7 @@
 
 (let* ((num-rows (length data))
        (num-cols (length (car data)))
-       (padded-data (pad-grid data))
+       (padded-data (pad-grid data 99))
        (grid (make-array (list (length padded-data) (+ 2 num-cols)) :initial-contents padded-data)))
   (reduce #'+
           (mapcar

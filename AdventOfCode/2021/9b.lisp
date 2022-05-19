@@ -1,16 +1,6 @@
 (require 'util)
 (in-package :my-aoc)
 
-(defvar )
-
-(defun pad-grid (data)
-  (let ((n (length (car data))))
-    (append
-     (cons
-      (make-list (+ 2 n) :initial-element 9)
-      (mapcar (lambda (line) (append (cons 9 line) '(9))) data))
-     (list (make-list (+ 2 n) :initial-element 9)))))
-
 (defun traverse (grid mark x y)
   (if (or (= (aref mark x y) 1)
           (= (aref grid x y) 9))
@@ -25,7 +15,7 @@
          (traverse grid mark x (1- y))))))
 
 (let* ((data (mapcar (lambda (line) (mapcar #'digit-char-p (coerce line 'list))) (read-file "9.inp")))
-       (padded-data (pad-grid data))
+       (padded-data (pad-grid data 9))
        (num-rows (length data))
        (num-cols (length (car data)))
        (grid (make-array (list (length padded-data) (+ 2 num-cols)) :initial-contents padded-data))
