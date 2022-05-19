@@ -3,10 +3,13 @@
 (require 'alexandria)
 
 (defpackage :my-aoc
-  (:use :cl :iterate :alexandria)
+  (:use :cl :alexandria)
   (:export read-file chunk-list array-row))
 
 (in-package :my-aoc)
+
+(ql:quickload :for)
+(ql:quickload :iterate)
 
 (defun read-file (filename)
   (with-open-file (stream filename)
@@ -63,8 +66,14 @@
     (unless compact (format t "~%"))
     (maphash (lambda (k v) (format t "   (~S . ~S)" k v) (unless compact (format t "~%"))) hash-table)
     (format t "   ) :TEST '~A)" test)
-    (unless compact (format t "~%"))
+    (format t "~%")
     hash-table))
+
+(defun hash-table-from-list (lst &key (test #'eql))
+  (let ((hash (make-hash-table :test test)))
+    (dolist (item lst hash)
+      (setf (gethash (car item) hash) (cadr item)))))
+
 
 ;; ;; --------------------------------------------------
 ;; ;; From Serapeum
