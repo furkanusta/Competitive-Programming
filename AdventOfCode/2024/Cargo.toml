@@ -3,5 +3,9 @@ name = "aoc24"
 version = "0.1.0"
 edition = "2021"
 
+[lints.rust]
+unused = "allow"
+unsafe_code = "forbid"
+
 [dependencies]
 regex = "1.11.1"
